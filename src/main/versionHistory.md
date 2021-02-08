@@ -26,7 +26,7 @@ Date : 05 Feb 2021, Friday
 
 ## V3 - PGAdmin Added, Metadata Added (Non-Standard)
 
-Date : 08 Feb 2021, Friday
+Date : 08 Feb 2021, Monday
 
     * Added the `versionHistory.md`
     * Added the `.meta` package with the `*MetaData` class
@@ -46,3 +46,13 @@ Date : 08 Feb 2021, Friday
         - http://localhost:8080/acrs/cardHolders/483
         - http://localhost:8080/acrs/pgAdmins/
         - http://localhost:8080/acrs/pgAdmins/483
+
+## V4 - CorpCards Added
+
+Date : 08 Feb 2021, Friday
+
+    * Added the CorpCards Facilities
+    * URLs
+        - http://localhost:8080/acrs/corporates/ - will return only the Corporates
+        - http://localhost:8080/acrs/corporates/cards - will embed the list of CardHolders inside each Corporate for all Corporates
+        - http://localhost:8080/acrs/corporates/661/cards -  will embed the list of CardHolders inside each Corporate for a particular OrgId

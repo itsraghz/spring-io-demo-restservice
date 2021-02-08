@@ -2,6 +2,7 @@ package com.example.util;
 
 
 import com.example.bo.CardHolder;
+import com.example.bo.CorpCards;
 import com.example.bo.Corporate;
 import com.example.bo.ProgramAdmin;
 import com.example.bo.meta.CorporateMetaData;
@@ -22,6 +23,9 @@ public class CorpPGAdminUtil {
     public static List<Corporate> corporateList = new ArrayList<>();
     public static List<CardHolder> cardHolderList = new ArrayList<>();
     public static Map<String, List<CardHolder>> cardHolderMap = new HashMap<>();
+
+    public static List<CorpCards> corpCardsList = new ArrayList<>();
+    public static Map<String, Corporate> corpCardsMap = new HashMap<>();
 
     public static List<ProgramAdmin> pgAdminList = new ArrayList<>();
     public static Map<String, List<ProgramAdmin>> pgAdminMap = new HashMap<>();
@@ -120,9 +124,11 @@ public class CorpPGAdminUtil {
         System.out.println("[*] initCorporates invoked...");
 
         Corporate corporate = null;
+        //CorpCards corporate = null;
 
         for(int i = 0; i < 5; i++) {
             corporate = new Corporate();
+            //corporate = new CorpCards();
 
             corporate.setId(corpCounter.incrementAndGet());
             corporate.setCreatedDate(new Date());
@@ -140,12 +146,37 @@ public class CorpPGAdminUtil {
 
             CorpPGAdminUtil.corporateList.add(corporate);
             CorpPGAdminUtil.corporateMap.put(corporate.getOrgId(), corporate);
+
+            //CorpPGAdminUtil.corpCardsList.add(corporate);
         }
 
         System.out.println("CorporateList :: ");
         for(Corporate _corporate : corporateList) {
             System.out.println("..... " + _corporate);
         }
+    }
+
+    public static CardHolder createCardHolder(String orgId) {
+        CardHolder cardHolder = new CardHolder();
+
+        cardHolder.setId(cardHolderCounter.incrementAndGet());
+        cardHolder.setCreatedDate(new Date());
+
+        cardHolder.setCardNumber(String.valueOf(faker.number().numberBetween(100000000, 999999999)));
+        cardHolder.setOrgId(orgId);
+        cardHolder.setCorporateId(String.valueOf(faker.number().numberBetween(111111111, 999999999)));
+        int randomIndex = faker.number().numberBetween(0, firstNameArray.length);
+        cardHolder.setFirstName(firstNameArray[randomIndex]);
+        cardHolder.setLastName(lastNameArray[randomIndex]);
+        cardHolder.setCardType(cardTypeArray[faker.number().numberBetween(0, cardTypeArray.length)]);
+        cardHolder.setIsBlocked(yesNoArray[faker.number().numberBetween(0, yesNoArray.length)]);
+        cardHolder.setStatus(cardStatusArray[faker.number().numberBetween(0, cardStatusArray.length)]);
+        cardHolder.setBalance(faker.number().randomDouble(2, 0, 999999));
+        cardHolder.setExpiryDate(faker.date().future(9999, TimeUnit.DAYS));
+
+        System.out.println("cardHolder :: " + cardHolder.toString());
+
+        return cardHolder;
     }
 
     public static void prepareCardHolders(String orgId) {
@@ -156,31 +187,59 @@ public class CorpPGAdminUtil {
         List<CardHolder> cardHolderListTemp = new ArrayList<>();
 
         for(int i = 0; i < 6; i++) {
-            cardHolder = new CardHolder();
-
-            cardHolder.setId(cardHolderCounter.incrementAndGet());
-            cardHolder.setCreatedDate(new Date());
-
-            cardHolder.setCardNumber(String.valueOf(faker.number().numberBetween(100000000, 999999999)));
-            cardHolder.setOrgId(orgId);
-            cardHolder.setCorporateId(String.valueOf(faker.number().numberBetween(111111111, 999999999)));
-            int randomIndex = faker.number().numberBetween(0, firstNameArray.length);
-            cardHolder.setFirstName(firstNameArray[randomIndex]);
-            cardHolder.setLastName(lastNameArray[randomIndex]);
-            cardHolder.setCardType(cardTypeArray[faker.number().numberBetween(0, cardTypeArray.length)]);
-            cardHolder.setIsBlocked(yesNoArray[faker.number().numberBetween(0, yesNoArray.length)]);
-            cardHolder.setStatus(cardStatusArray[faker.number().numberBetween(0, cardStatusArray.length)]);
-            cardHolder.setBalance(faker.number().randomDouble(2, 0, 999999));
-            cardHolder.setExpiryDate(faker.date().future(9999, TimeUnit.DAYS));
-
-            System.out.println("cardHolder :: " + cardHolder.toString());
-
+            cardHolder = createCardHolder(orgId);
+            //addCardHolderToCorporate(orgId, cardHolder);
             cardHolderListTemp.add(cardHolder);
         }
 
         CorpPGAdminUtil.cardHolderMap.put(orgId, cardHolderListTemp);
         CorpPGAdminUtil.cardHolderList.addAll(cardHolderListTemp);
     }
+
+    public static void addCardHolderToCorporate(String orgId, CardHolder cardHolder)
+    {
+        //Corporate corporate = CorpPGAdminUtil.corpCardsMap.get(orgId);
+        CorpPGAdminUtil.corporateMap.get(orgId).getCardHolderList().add(cardHolder);
+    }
+
+    public static List<Corporate> addCardHolderToCorporate()
+    {
+        Set<String> keySet = CorpPGAdminUtil.corporateMap.keySet();
+        Iterator<String> iterator = keySet.iterator();
+
+        List<Corporate> corporateListToReturn = new ArrayList<>();
+
+        String key = null;
+        List<CardHolder> cardHolderList = null;
+        Corporate corporate  = null;
+
+        while(iterator.hasNext()) {
+            key = iterator.next();
+            cardHolderList = CorpPGAdminUtil.cardHolderMap.get(key);
+            corporate = CorpPGAdminUtil.corporateMap.get(key);
+            corporate.setCardHolderList(cardHolderList);
+
+            corporateListToReturn.add(corporate);
+        }
+
+        return corporateListToReturn;
+    }
+
+    public static Corporate addCardHolderToCorporateForOrgId(String orgId)
+    {
+        Set<String> keySet = CorpPGAdminUtil.corporateMap.keySet();
+        Iterator<String> iterator = keySet.iterator();
+
+        List<CardHolder> cardHolderList = null;
+        Corporate corporate  = null;
+
+        cardHolderList = CorpPGAdminUtil.cardHolderMap.get(orgId);
+        corporate = CorpPGAdminUtil.corporateMap.get(orgId);
+        corporate.setCardHolderList(cardHolderList);
+
+        return corporate;
+    }
+
 
     public static void initCardHolders() {
         System.out.println("[*] initCardHolders invoked...");
@@ -295,8 +354,19 @@ public class CorpPGAdminUtil {
         return pgAdminList;
     }
 
-    public static void addCustomer(CardHolder customer) {
+    public static void addCardHolder(CardHolder cardHolder) {
         System.out.println("[*] addCustomer invoked...");
+        CorpPGAdminUtil.cardHolderList.add(cardHolder);
+        List<CardHolder> cardHolderList = CorpPGAdminUtil.cardHolderMap.get(cardHolder.getOrgId());
+
+        if(null==cardHolderList) {
+            cardHolderList = new ArrayList<>();
+        }
+
+        cardHolderList.add(cardHolder);
+        System.out.println(" ...... cardHolderList updated");
+        CorpPGAdminUtil.cardHolderMap.put(cardHolder.getOrgId(), cardHolderList);
+        System.out.println(" ...... cardHolderMap updated");
     }
 
     public static Corporate getCorporateByOrgId(String orgId)  {

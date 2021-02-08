@@ -3,9 +3,11 @@ package com.example.restservice;
 import com.example.bo.CardHolder;
 import com.example.bo.Corporate;
 import com.example.bo.ProgramAdmin;
-import com.example.bo.meta.CorporateMetaData;
 import com.example.util.CorpPGAdminUtil;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +27,9 @@ public class CardController {
         urlsList.add("http://localhost:8080/acrs/cardHolders/486");
         urlsList.add("http://localhost:8080/acrs/pgAdmins/");
         urlsList.add("http://localhost:8080/acrs/pgAdmins/486");
+        urlsList.add("http://localhost:8080/acrs/corporates/cards");
+        urlsList.add("http://localhost:8080/acrs/corporates/661/cards");
         return urlsList;
-
     }
 
     @GetMapping("/corporates")
@@ -41,6 +44,18 @@ public class CardController {
     public Corporate getCorporateByOrgId(@PathVariable(name="orgId")String orgId) {
         System.out.println("/corporates/{orgId} - GET request received, PathVariable orgId :: " + orgId);
         return CorpPGAdminUtil.getCorporateByOrgId(orgId);
+    }
+
+    @GetMapping("/corporates/cards")
+    public List<Corporate> getCorpCards() {
+        System.out.println("/corporates/cards - GET request received");
+        return CorpPGAdminUtil.addCardHolderToCorporate();
+    }
+
+    @GetMapping("/corporates/{orgId}/cards")
+    public Corporate getCorpCardsForOrgId(@PathVariable(name="orgId")String orgId) {
+        System.out.println("/corporates/{orgId}/cards - GET request received, PathVariable orgId :: " + orgId);
+        return CorpPGAdminUtil.addCardHolderToCorporateForOrgId(orgId);
     }
 
     @GetMapping("/cardHolders")
@@ -74,5 +89,4 @@ public class CardController {
         CorpPGAdminUtil.addMetadataForPGAdmin(_pgAdminsList);
         return _pgAdminsList;
     }
-
 }
