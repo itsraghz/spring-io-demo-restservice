@@ -4,15 +4,13 @@ import com.example.bo.CardHolder;
 import com.example.bo.Corporate;
 import com.example.bo.ProgramAdmin;
 import com.example.util.CorpPGAdminUtil;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="*", allowedHeaders = "*")
 @RequestMapping("/acrs")
 public class CardController {
 

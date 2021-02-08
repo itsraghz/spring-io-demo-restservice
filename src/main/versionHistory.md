@@ -49,10 +49,17 @@ Date : 08 Feb 2021, Monday
 
 ## V4 - CorpCards Added
 
-Date : 08 Feb 2021, Friday
+Date : 08 Feb 2021, Monday
 
     * Added the CorpCards Facilities
     * URLs
         - http://localhost:8080/acrs/corporates/ - will return only the Corporates
         - http://localhost:8080/acrs/corporates/cards - will embed the list of CardHolders inside each Corporate for all Corporates
         - http://localhost:8080/acrs/corporates/661/cards -  will embed the list of CardHolders inside each Corporate for a particular OrgId
+
+## V5 - CorpCards Added
+
+Date : 08 Feb 2021, Monday
+
+    - Added @CrossOrigin to the Controller 
+        `@CrossOrigin(origins="*", allowedHeaders = "*")`
