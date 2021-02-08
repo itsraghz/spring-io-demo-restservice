@@ -1,5 +1,6 @@
 package com.example.bo;
 
+import com.example.bo.meta.CorporateMetaData;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -30,4 +31,5 @@ public class CardHolder {
     private Date modifiedDate;
     private String modifiedBy;
 
+    private CorporateMetaData metaData;
 }
