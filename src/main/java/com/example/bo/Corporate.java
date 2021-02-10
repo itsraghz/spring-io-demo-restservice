@@ -31,4 +31,11 @@ public class Corporate {
     private String modifiedBy;
 
     private CorporateMetaData metaData;
+
+    public void update() {
+        if(this.getModifiedBy()==null || this.getModifiedBy().trim().length()==0) {
+            this.setModifiedBy("SYSTEM");
+        }
+        this.setModifiedDate(new Date());
+    }
 }

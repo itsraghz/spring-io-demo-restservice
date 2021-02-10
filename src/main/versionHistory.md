@@ -63,3 +63,27 @@ Date : 08 Feb 2021, Monday
 
     - Added @CrossOrigin to the Controller 
         `@CrossOrigin(origins="*", allowedHeaders = "*")`
+
+## V6 - PUT Requests added, few GET requests for cardHolders and pgAdmins modified
+
+Date : 10 Feb 2021, Wednesday
+
+    * Added Update functionality for Corporate, CardHolder and PGAdmin
+        - Added `update()` method in the POJOs - `Corporate`, `CardHolder` and `ProgramAdmin`
+    * Added updateXXX() methods in `CorpPGAdminUtil` class
+    * URLs
+        GET - http://localhost:8080/acrs/corporates/
+        GET - http://localhost:8080/acrs/corporates/486
+        GET - http://localhost:8080/acrs/corporates/cards
+        GET - http://localhost:8080/acrs/corporates/661/cards
+        PUT - http://localhost:8080/acrs/corporates/1
+        PUT - http://localhost:8080/acrs/corporates/1/Raghs
+        GET - http://localhost:8080/acrs/cardHolders/
+        GET - http://localhost:8080/acrs/cardHolders/corporate/486
+        PUT - http://localhost:8080/acrs/cardHolder/1
+        PUT - http://localhost:8080/arcs/cardHolder/1/Raghs
+        GET - http://localhost:8080/acrs/pgAdmins/
+        GET - http://localhost:8080/acrs/pgAdmins/1
+        GET - http://localhost:8080/acrs/pgAdmins/corporate/540
+        PUT - http://localhost:8080/acrs/pgAdmins/1
+        PUT - http://localhost:8080/arcs/pgAdmins/1/Raghs
