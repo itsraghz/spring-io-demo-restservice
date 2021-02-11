@@ -53,6 +53,8 @@ public class CardController {
         urlsList.add("GET - http://localhost:8080/acrs/pgAdmins/corporate/540");
         urlsList.add("PUT - http://localhost:8080/acrs/pgAdmins/1");
         urlsList.add("PUT - http://localhost:8080/arcs/pgAdmins/1/Raghs");
+        urlsList.add("GET - http://localhost:8080/acrs/corporates/pgAdmins");
+        urlsList.add("GET - http://localhost:8080/acrs/corporates/123/pgAdmins");
 
         for(String url: urlsList) {
             if(!url.startsWith("--")) {
@@ -200,6 +202,15 @@ public class CardController {
 
         CorpPGAdminUtil.updatePGAdmin(Id, userName, pgAdminParam);
     }
+    @GetMapping("/corporates/pgAdmins")
+    public List<Corporate> getCorpPGAdmins() {
+        System.out.println("/corporates/pgAdmins - GET request received");
+        return CorpPGAdminUtil.addPGAdminToCorporate();
+    }
 
-
+    @GetMapping("/corporates/{orgId}/pgAdmins")
+    public Corporate getCorpPGAdminsForOrgId(@PathVariable(name="orgId")String orgId) {
+        System.out.println("/corporates/{orgId}/pgAdmins - GET request received, PathVariable orgId :: " + orgId);
+        return CorpPGAdminUtil.addPGAdminToCorporateForOrgId(orgId);
+    }
 }

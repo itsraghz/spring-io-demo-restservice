@@ -87,3 +87,12 @@ Date : 10 Feb 2021, Wednesday
         GET - http://localhost:8080/acrs/pgAdmins/corporate/540
         PUT - http://localhost:8080/acrs/pgAdmins/1
         PUT - http://localhost:8080/arcs/pgAdmins/1/Raghs
+
+## V7 - GET Requests for CorpPGAdmins and CorpPGAdminsForCorpId added
+
+Date : 11 Feb 2021, Thursday
+
+    * Added GET Requests for CorpPGAdmins and CorpPGAdminForCorpId
+    * URLs
+        - http://localhost:8080/acrs/corporates/pgAdmins
+        - http://localhost:8080/acrs/corporates/207/pgAdmins

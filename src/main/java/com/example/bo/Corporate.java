@@ -23,6 +23,7 @@ public class Corporate {
     private String country;
 
     private List<CardHolder> cardHolderList = new ArrayList<>();
+    private List<ProgramAdmin> pgAdminList = new ArrayList<>();
 
     /* Audit Columns */
     private Date createdDate = new Date();

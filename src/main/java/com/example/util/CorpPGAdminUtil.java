@@ -273,6 +273,44 @@ public class CorpPGAdminUtil {
         return corporate;
     }
 
+    public static List<Corporate> addPGAdminToCorporate()
+    {
+        Set<String> keySet = CorpPGAdminUtil.corporateMap.keySet();
+        Iterator<String> iterator = keySet.iterator();
+
+        List<Corporate> corporateListToReturn = new ArrayList<>();
+
+        String key = null;
+        List<ProgramAdmin> pgAdminList = null;
+        Corporate corporate  = null;
+
+        while(iterator.hasNext()) {
+            key = iterator.next();
+            pgAdminList = CorpPGAdminUtil.pgAdminListMap.get(key);
+            corporate = CorpPGAdminUtil.corporateMap.get(key);
+            corporate.setPgAdminList(pgAdminList);
+
+            corporateListToReturn.add(corporate);
+        }
+
+        return corporateListToReturn;
+    }
+
+    public static Corporate addPGAdminToCorporateForOrgId(String orgId)
+    {
+        Set<String> keySet = CorpPGAdminUtil.corporateMap.keySet();
+        Iterator<String> iterator = keySet.iterator();
+
+        List<ProgramAdmin> pgAdminList = null;
+        Corporate corporate  = null;
+
+        pgAdminList = CorpPGAdminUtil.pgAdminListMap.get(orgId);
+        corporate = CorpPGAdminUtil.corporateMap.get(orgId);
+        corporate.setPgAdminList(pgAdminList);
+
+        return corporate;
+    }
+
 
     public static void initCardHolders() {
         System.out.println("[*] initCardHolders invoked...");
