@@ -96,3 +96,11 @@ Date : 11 Feb 2021, Thursday
     * URLs
         - http://localhost:8080/acrs/corporates/pgAdmins
         - http://localhost:8080/acrs/corporates/207/pgAdmins
+
+## V8 - Enabled Swagger2
+
+Date : 11 Feb 2021, Thursday
+
+    * Enabled Swagger2 and SwaggerUI
+    * URLs
+        - http://localhost:8080/swagger-ui.html

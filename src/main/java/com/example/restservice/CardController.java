@@ -37,6 +37,8 @@ public class CardController {
         System.out.println("Request received for the default - '/'");
         List<String> urlsList =  new ArrayList<>();
         urlsList.add("Welcome to ACRS Backend Services. Please try with any of the following URLs with the change in host and port #");
+        urlsList.add("http://localhost:8080/swagger-ui.html");
+        urlsList.add("-------------------------------------");
         urlsList.add("GET - http://localhost:8080/acrs/corporates/");
         urlsList.add("GET - http://localhost:8080/acrs/corporates/486");
         urlsList.add("GET - http://localhost:8080/acrs/corporates/cards");
