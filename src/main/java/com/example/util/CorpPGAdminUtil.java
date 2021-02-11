@@ -47,7 +47,7 @@ public class CorpPGAdminUtil {
     public static final String KEY_FIRST_NAME = KEY_BASE + KEY_SEPARATOR + "firstName";
     public static final String KEY_PGADMIN_STATUS = KEY_BASE + KEY_SEPARATOR + "pgAdminStatus";
 
-    private static final String[] corpNamesArray = new String[] { "TCS", "Infy", "Wipro", "Citi", "Accenture", "HCL", "Polaris", "IRIS", "Verizon"};
+    /*private static final String[] corpNamesArray = new String[] { "TCS", "Infy", "Wipro", "Citi", "Accenture", "HCL", "Polaris", "IRIS", "Verizon"};
     private static final String[] countryNamesArray = new String[] { "India", "Singapore", "Europe", "UK", "USA", "India", "India", "India", "India"};
     private static final String[] cityNamesArray = new String[] { "Chennai", "Singapore", "Germany", "London", "Texas", "Bangalore", "Hyderabad", "Noida", "Mumbai"};
     private static final String[] cardTypeArray = new String[] { "C", "I"};
@@ -61,9 +61,9 @@ public class CorpPGAdminUtil {
     private static final String[] pgAdminNamesArray = new String[] {"Muthu", "Raghavan", "Roberto", "Frank", "Xavier", "Anees", "Ravi", "Manoj", "Sathia", "Chandramouli", "Lakshmanan", "Couppusamy", "Sriram", "Rajdip", "Saurabh", "Sundaresan", "George", "Mahemed", "Rajkumar", "Edward", "Vinayagam", "Alaguraja", "Sathis Kumar"};
     //private static final String[] pgBillingEntityArray = new String[] { "ABC", "PQR", "XYZ"};
     private static final String[] pgBillingEntityArray = new String[] { "005533826000041569", "0066533826000041569", "005533826000041570", "005544826000041569", "004533826000041571"};
-    private static final String[] pgAccessRightsArray = new String[] { "Maker", "Checker", "Both"};
+    private static final String[] pgAccessRightsArray = new String[] { "Maker", "Checker", "Both"};*/
 
-    /*private static final String[] corpNamesArray = PropertyUtil.getPropArray(KEY_CORP);
+    private static final String[] corpNamesArray = PropertyUtil.getPropArray(KEY_CORP);
     private static final String[] countryNamesArray = PropertyUtil.getPropArray(KEY_COUNTRY);
     private static final String[] cityNamesArray = PropertyUtil.getPropArray(KEY_CITY);
     private static final String[] cardTypeArray = PropertyUtil.getPropArray(KEY_CARD_TYPES);
@@ -75,7 +75,7 @@ public class CorpPGAdminUtil {
     private static final String[] pgAdminTypeArray = PropertyUtil.getPropArray(KEY_PG_ADMIN_TYPE);
     private static final String[] pgAdminNamesArray = PropertyUtil.getPropArray(KEY_PGADMIN_NAMES);
     private static final String[] pgBillingEntityArray = PropertyUtil.getPropArray(KEY_PG_BILLING_ENTITIES);
-    private static final String[] pgAccessRightsArray = PropertyUtil.getPropArray(KEY_PG_ACCESS_RIGHTS);*/
+    private static final String[] pgAccessRightsArray = PropertyUtil.getPropArray(KEY_PG_ACCESS_RIGHTS);
 
     private static Faker faker = new Faker();
     private static Random random = new Random();

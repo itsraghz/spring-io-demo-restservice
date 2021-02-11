@@ -118,7 +118,20 @@ Date : 11 Feb 2021, Thursday
 
 Date : 11 Feb 2021, Thursday
 
-    * Data Rectification
-        - Corporate Names to be more than 5 for a proper pagination (increased from 5 to 9)
-        - Logic to build Corporate Datastructure was modified to have a randomness and avoiding duplication
-        - Logic to build the CardHolder or PGAdmin on a Corporate was modified - out of randomness, instead it can take the sequential, as at times in my local machine it goes in an indefinite loop.
+* Data Rectification
+    - Corporate Names to be more than 5 for a proper pagination (increased from 5 to 9)
+    - Logic to build Corporate Datastructure was modified to have a randomness and avoiding duplication
+    - Logic to build the CardHolder or PGAdmin on a Corporate was modified - out of randomness, instead it can take the sequential, as at times in my local machine it goes in an indefinite loop.
+
+## V11 - WAR Packaging, Externalized Config Values
+
+Date : 12 Feb 2021, Friday
+
+    * JAR to WAR Conversion
+            - Changes in `pom.xml` file
+            - Changes in the `Main` Application class
+    * Externalized the config values to the `resources.properties` file
+            - Changes in `CorpPGAdminUtil.java` with the constants for the properties keys
+    * PropertyUtil `getProperty()` method refined to `trim()` the spaces around the values
+
+

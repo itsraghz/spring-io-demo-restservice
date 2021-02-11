@@ -12,7 +12,7 @@ public class PropertyUtil {
     @Autowired
     ResourceLoader resourceloader;
 
-    public static final String PROPERTY_FILE_NAME = "src/resources.properties";
+    public static final String PROPERTY_FILE_NAME = "resources.properties";
 
     public static Properties _properties = new Properties();
 
@@ -64,6 +64,8 @@ public class PropertyUtil {
 
         //System.out.println("(3) Final value :: " + value);
 
+        value = value.trim();
+
         return value;
     }
 
@@ -94,7 +96,7 @@ public class PropertyUtil {
         StringTokenizer st = new StringTokenizer(data, delimiter);
 
         while(st.hasMoreTokens()) {
-            strList.add(st.nextToken());
+            strList.add(st.nextToken().trim());
         }
 
         return strList;
