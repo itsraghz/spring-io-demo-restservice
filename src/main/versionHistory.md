@@ -104,3 +104,12 @@ Date : 11 Feb 2021, Thursday
     * Enabled Swagger2 and SwaggerUI
     * URLs
         - http://localhost:8080/swagger-ui.html
+
+## V9 - Data Rectification, Index.html added
+
+Date : 11 Feb 2021, Thursday
+
+    * Data Rectification
+        - Billing Entity corrected with seemingly real data
+        - PGAdmin Names were matching with the FirstNames list
+    * `index.html` file added

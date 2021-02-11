@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CardController</title>
+    <style>
+        * {
+            font-family: Calibri;
+            /*font-size: 90%;*/
+            color: navy;
+        }
+        table, tr, th, td {
+            border: 1px solid darkcyan;
+            padding: 5px;
+            margin: 5px;
+            color: teal;
+        }
+        th {
+            font-weight: bold;
+        }
+        li {
+            font-family: Consolas, Calibri;
+            color: slategrey;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Card Controller - Backend Services</h1>
+
+    <h2>Version History</h2>
+    <table>
+        <tr>
+            <th>Sl No</th>
+            <th>Date</th>
+            <th>Author</th>
+            <th>Changes</th>
+            <th>Remarks</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>03 Feb 2011</td>
+            <td>Raghavan Muthu</td>
+            <td>Initial Version</td>
+            <td>
+                GET request added for
+                <ul>
+                    <li>Get all Corporate</li>
+                    <li>Get a specific Corpoate</li>
+                    <li>Get all CardHolders</li>
+                    <li>Get all the cardholders for a specific corporate</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>11 Feb 2021</td>
+            <td>Raghavan Muthu</td>
+            <td>
+                GET - Requests Added.
+                <ul>
+                    <li>CorpPGAdmin</li>
+                    <li>CorpPGAdminForOrgId</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="/acrs/corporates/pgAdmins">CorpPGAdmins</a>
+                    </li>
+                    <li>
+                        <a href="/acrs/pgAdmins/">Get PGAdmins</a></li>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>11 Feb 2021</td>
+            <td>Raghavan Muthu</td>
+            <td>Swagger UI Added</td>
+            <td>
+                <a href="http://localhost:8080/swagger-ui.html">Swagger UI</a>
+            </td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>11 Feb 2021</td>
+            <td>Raghavan Muthu</td>
+            <td>
+                List of Changes
+                <ul>
+                    <li>Data Rectification on ProgramAdmin - Names, BillingEntity</li>
+                    <li>`index.html` file added</li>
+                </ul>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -57,8 +57,10 @@ public class CorpPGAdminUtil {
     private static final String[] lastNameArray = new String[] {"Krishnan", "Muthu", "Chavez", "Jonathan", "Prakash", "Ahmed", "Ranjan", "Sutradhar", "Priya", "Ramamoorthy", "Sathyamurthy", "Perumal", "Venkitesan", "Deb", "Kumar", "Kannappan", "Philips", "Rafiuddin", "Anbazhagan", "Javier", "Vineeth", "Balasubramaniam", "Abhishek"};
     private static final String[] pgAdminStatusArray = new String[] { "A", "D"};
     private static final String[] pgAdminTypeArray = new String[] { "C - Central PA", "A - Authorizing Officer", "P - Primary PA", "M - Master PA", "N - No PA"};
-    private static final String[] pgAdminNamesArray = new String[] { "CPA - Test", "ACRS - Test", "PPA - Test", "MPA - Test", "NPA - Test"};
-    private static final String[] pgBillingEntityArray = new String[] { "ABC", "PQR", "XYZ"};
+    //private static final String[] pgAdminNamesArray = new String[] { "CPA - Test", "ACRS - Test", "PPA - Test", "MPA - Test", "NPA - Test"};
+    private static final String[] pgAdminNamesArray = new String[] {"Muthu", "Raghavan", "Roberto", "Frank", "Xavier", "Anees", "Ravi", "Manoj", "Sathia", "Chandramouli", "Lakshmanan", "Couppusamy", "Sriram", "Rajdip", "Saurabh", "Sundaresan", "George", "Mahemed", "Rajkumar", "Edward", "Vinayagam", "Alaguraja", "Sathis Kumar"};
+    //private static final String[] pgBillingEntityArray = new String[] { "ABC", "PQR", "XYZ"};
+    private static final String[] pgBillingEntityArray = new String[] { "005533826000041569", "0066533826000041569", "005533826000041570", "005544826000041569", "004533826000041571"};
     private static final String[] pgAccessRightsArray = new String[] { "Maker", "Checker", "Both"};
 
     /*private static final String[] corpNamesArray = PropertyUtil.getPropArray(KEY_CORP);
