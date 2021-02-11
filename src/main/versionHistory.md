@@ -113,3 +113,12 @@ Date : 11 Feb 2021, Thursday
         - Billing Entity corrected with seemingly real data
         - PGAdmin Names were matching with the FirstNames list
     * `index.html` file added
+
+## V10 - Data Rectification
+
+Date : 11 Feb 2021, Thursday
+
+    * Data Rectification
+        - Corporate Names to be more than 5 for a proper pagination (increased from 5 to 9)
+        - Logic to build Corporate Datastructure was modified to have a randomness and avoiding duplication
+        - Logic to build the CardHolder or PGAdmin on a Corporate was modified - out of randomness, instead it can take the sequential, as at times in my local machine it goes in an indefinite loop.

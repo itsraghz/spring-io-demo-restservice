@@ -47,9 +47,9 @@ public class CorpPGAdminUtil {
     public static final String KEY_FIRST_NAME = KEY_BASE + KEY_SEPARATOR + "firstName";
     public static final String KEY_PGADMIN_STATUS = KEY_BASE + KEY_SEPARATOR + "pgAdminStatus";
 
-    private static final String[] corpNamesArray = new String[] { "TCS", "Infy", "Wipro", "Citi", "Accenture"};
-    private static final String[] countryNamesArray = new String[] { "India", "Singapore", "Europe", "UK", "USA"};
-    private static final String[] cityNamesArray = new String[] { "Chennai", "Singapore", "Germany", "London", "Texas"};
+    private static final String[] corpNamesArray = new String[] { "TCS", "Infy", "Wipro", "Citi", "Accenture", "HCL", "Polaris", "IRIS", "Verizon"};
+    private static final String[] countryNamesArray = new String[] { "India", "Singapore", "Europe", "UK", "USA", "India", "India", "India", "India"};
+    private static final String[] cityNamesArray = new String[] { "Chennai", "Singapore", "Germany", "London", "Texas", "Bangalore", "Hyderabad", "Noida", "Mumbai"};
     private static final String[] cardTypeArray = new String[] { "C", "I"};
     private static final String[] yesNoArray = new String[] { "Y", "N"};
     private static final String[] cardStatusArray = new String[] { "A", "I"};
@@ -158,15 +158,27 @@ public class CorpPGAdminUtil {
 
         Corporate corporate = null;
         //CorpCards corporate = null;
+        int limit = CorpPGAdminUtil.corpNamesArray.length;
+        //limit = 5;
+        Set<String> orgIdSet = new HashSet<>();
+        List<Corporate> _corporateList = CorpPGAdminUtil.corporateList;
 
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < limit; i++) {
             corporate = new Corporate();
             //corporate = new CorpCards();
 
             corporate.setId(corpCounter.incrementAndGet());
             corporate.setCreatedDate(new Date());
 
-            corporate.setOrgId(String.valueOf(faker.number().numberBetween(101, 999)));
+            String orgId = String.valueOf(faker.number().numberBetween(101, 999));
+            System.out.println(" [-->] Random Org Id :: " +orgId);
+            while(orgIdSet.contains(orgId)) {
+                orgId = String.valueOf(faker.number().numberBetween(101, 999));
+                System.out.println(" [-->] ...... #ReAttempt ...... Random Org Id :: " +orgId);
+            }
+            orgIdSet.add(orgId);
+            corporate.setOrgId(orgId);
+
             corporate.setCorpId(String.valueOf(faker.number().numberBetween(111111111, 999999999)));
             //corporate.setName(String.valueOf(faker.company().name()));
             //corporate.setCity(faker.address().cityName());
@@ -384,7 +396,8 @@ public class CorpPGAdminUtil {
 
         for(int i=0; i< limit ; i++) {
             System.out.println(" [**] Iteration Count : " + i);
-            orgId = _corporateList.get(faker.number().numberBetween(0, corporateList.size())).getOrgId();
+            //orgId = _corporateList.get(faker.number().numberBetween(0, corporateList.size())).getOrgId();
+            orgId = _corporateList.get(i).getOrgId();
 
             System.out.println(" [-->] Random Org Id :: " +orgId);
 
