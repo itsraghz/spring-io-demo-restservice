@@ -1,6 +1,6 @@
 # To Do
 
-* WIP - Externalize the hardcoded values to a config file
+* [DONE] on WAR - WIP - Externalize the hardcoded values to a config file
 * [DONE] Update (CRUD)
 * H2 InMemory Database
 * JPA - Service, Repository
