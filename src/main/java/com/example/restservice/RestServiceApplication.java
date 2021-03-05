@@ -20,7 +20,7 @@ public class RestServiceApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
 
-        System.out.println("====================================================");
+        System.out.println("================================================ ====");
         System.out.println("Java Version :: " + System.getProperty("java.version"));
         JavaVersionCheckUtil.getJavaVersion();
         System.out.println("====================================================");

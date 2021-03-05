@@ -134,4 +134,9 @@ Date : 12 Feb 2021, Friday
             - Changes in `CorpPGAdminUtil.java` with the constants for the properties keys
     * PropertyUtil `getProperty()` method refined to `trim()` the spaces around the values
 
+## V12 - Logback Added, HATEOAS with Dynamic IP/Port added
 
+Date : 05 Mar 2021, Friday
+
+    * Logback Config added
+    * HATEOAS - URLs with dynamic HostName and Port added

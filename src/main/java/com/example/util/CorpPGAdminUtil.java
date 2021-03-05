@@ -9,6 +9,8 @@ import com.example.bo.meta.CorporateMetaData;
 import com.github.javafaker.Faker;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +20,9 @@ import java.util.concurrent.atomic.AtomicLong;
 @EqualsAndHashCode
 public class CorpPGAdminUtil {
 
+    private static final Logger logger
+            = LoggerFactory.getLogger(CorpPGAdminUtil.class);
+    
     public static Map<String, Corporate> corporateMap = new HashMap<>();
     public static List<Corporate> corporateList = new ArrayList<>();
     public static List<CardHolder> cardHolderList = new ArrayList<>();
@@ -94,55 +99,55 @@ public class CorpPGAdminUtil {
     }
 
     public static void print() {
-        System.out.println();
-        System.out.println("==========================================");
-        System.out.println("            Datasets being prepared       ");
-        System.out.println("==========================================");
+        logger.info("");
+        logger.info("==========================================");
+        logger.info("            Datasets being prepared       ");
+        logger.info("==========================================");
 
-        System.out.println(" ** Corporate List **");
-        System.out.println("______________________");
+        logger.info(" ** Corporate List **");
+        logger.info("______________________");
         List<Corporate> _corporateList = CorpPGAdminUtil.corporateList;
         for(Corporate corporate : _corporateList) {
-            System.out.println(corporate);
+            logger.info(corporate.toString());
         }
 
-        System.out.println();
-        System.out.println(" ** CardHolder List **");
-        System.out.println("______________________");
+        logger.info("");
+        logger.info(" ** CardHolder List **");
+        logger.info("______________________");
         List<CardHolder> _cardHolderList = CorpPGAdminUtil.cardHolderList;
         for(CardHolder cardHolder : _cardHolderList) {
-            System.out.println(cardHolder);
+            logger.info(cardHolder.toString());
         }
 
-        System.out.println();
-        System.out.println(" ** CardHolder Map **");
-        System.out.println("______________________");
+        logger.info("");
+        logger.info(" ** CardHolder Map **");
+        logger.info("______________________");
         Map<String, List<CardHolder>> _cardHolderMap = CorpPGAdminUtil.cardHolderListMap;
         for(Map.Entry<String, List<CardHolder>> entry : _cardHolderMap.entrySet()) {
-            System.out.println(" /// Corporate/Org ID - " + entry.getKey() + " ///");
+            logger.info(" /// Corporate/Org ID - " + entry.getKey() + " ///");
             List<CardHolder> _cardHolderListForKey = entry.getValue();
             for(CardHolder cardHolder : _cardHolderListForKey) {
-                System.out.println(" #### CardHolder ---> " + cardHolder);
+                logger.info(" #### CardHolder ---> " + cardHolder);
             }
         }
 
-        System.out.println();
-        System.out.println(" ** PGAdmin List **");
-        System.out.println("______________________");
+        logger.info("");
+        logger.info(" ** PGAdmin List **");
+        logger.info("______________________");
         List<ProgramAdmin> _pgAdminList = CorpPGAdminUtil.pgAdminList;
         for(ProgramAdmin _pgAdmin : _pgAdminList) {
-            System.out.println(_pgAdmin);
+            logger.info(_pgAdmin.toString());
         }
 
-        System.out.println();
-        System.out.println(" ** ProgramAdmin Map **");
-        System.out.println("______________________");
+        logger.info("");
+        logger.info(" ** ProgramAdmin Map **");
+        logger.info("______________________");
         Map<String, List<ProgramAdmin>> _pgAdminMap = CorpPGAdminUtil.pgAdminListMap;
         for(Map.Entry<String, List<ProgramAdmin>> entry : _pgAdminMap.entrySet()) {
-            System.out.println(" /// Corporate/Org ID - " + entry.getKey() + " ///");
+            logger.info(" /// Corporate/Org ID - " + entry.getKey() + " ///");
             List<ProgramAdmin> _pgAdminListForKey = entry.getValue();
             for(ProgramAdmin _pgAdmin : _pgAdminListForKey) {
-                System.out.println(" #### ProgramAdmin ---> " + _pgAdmin);
+                logger.info(" #### ProgramAdmin ---> " + _pgAdmin);
             }
         }
     }
@@ -154,7 +159,7 @@ public class CorpPGAdminUtil {
 
     public static void initCorporates() {
 
-        System.out.println("[*] initCorporates invoked...");
+        logger.info("[*] initCorporates invoked...");
 
         Corporate corporate = null;
         //CorpCards corporate = null;
@@ -171,10 +176,10 @@ public class CorpPGAdminUtil {
             corporate.setCreatedDate(new Date());
 
             String orgId = String.valueOf(faker.number().numberBetween(101, 999));
-            System.out.println(" [-->] Random Org Id :: " +orgId);
+            logger.info(" [-->] Random Org Id :: " +orgId);
             while(orgIdSet.contains(orgId)) {
                 orgId = String.valueOf(faker.number().numberBetween(101, 999));
-                System.out.println(" [-->] ...... #ReAttempt ...... Random Org Id :: " +orgId);
+                logger.info(" [-->] ...... #ReAttempt ...... Random Org Id :: " +orgId);
             }
             orgIdSet.add(orgId);
             corporate.setOrgId(orgId);
@@ -195,9 +200,9 @@ public class CorpPGAdminUtil {
             //CorpPGAdminUtil.corpCardsList.add(corporate);
         }
 
-        System.out.println("CorporateList :: ");
+        logger.info("CorporateList :: ");
         for(Corporate _corporate : corporateList) {
-            System.out.println("..... " + _corporate);
+            logger.info("..... " + _corporate);
         }
     }
 
@@ -219,7 +224,7 @@ public class CorpPGAdminUtil {
         cardHolder.setBalance(faker.number().randomDouble(2, 0, 999999));
         cardHolder.setExpiryDate(faker.date().future(9999, TimeUnit.DAYS));
 
-        System.out.println("cardHolder :: " + cardHolder.toString());
+        logger.info("cardHolder :: " + cardHolder.toString());
 
         CorpPGAdminUtil.cardHolderMap.put(cardHolder.getId(), cardHolder);
 
@@ -227,7 +232,7 @@ public class CorpPGAdminUtil {
     }
 
     public static void prepareCardHolders(String orgId) {
-        System.out.println("[*] prepareCardHolders invoked...");
+        logger.info("[*] prepareCardHolders invoked...");
 
         CardHolder cardHolder = null;
 
@@ -327,13 +332,13 @@ public class CorpPGAdminUtil {
 
 
     public static void initCardHolders() {
-        System.out.println("[*] initCardHolders invoked...");
+        logger.info("[*] initCardHolders invoked...");
 
         initMetadataForCorporate("CardHolder");
     }
 
     public static void preparePGAdmins(String orgId) {
-        System.out.println("[*] preparePGAdmins invoked...");
+        logger.info("[*] preparePGAdmins invoked...");
 
         ProgramAdmin pgAdmin = null;
 
@@ -373,7 +378,7 @@ public class CorpPGAdminUtil {
         randomIndexPGAdminType = faker.number().numberBetween(0, pgAdminTypeArray.length);
         pgAdmin.setPgAdminType(pgAdminTypeArray[randomIndexPGAdminType]);
 
-        System.out.println("pgAdmin :: " + pgAdmin.toString());
+        logger.info("pgAdmin :: " + pgAdmin.toString());
 
         CorpPGAdminUtil.pgAdminMap.put(pgAdmin.getId(), pgAdmin);
 
@@ -382,7 +387,7 @@ public class CorpPGAdminUtil {
 
     public static void initPGAdmins() {
 
-        System.out.println("[*] initPGAdmins invoked...");
+        logger.info("[*] initPGAdmins invoked...");
 
         initMetadataForCorporate("PGAdmin");
     }
@@ -395,15 +400,15 @@ public class CorpPGAdminUtil {
         //limit = 3;
 
         for(int i=0; i< limit ; i++) {
-            System.out.println(" [**] Iteration Count : " + i);
+            logger.info(" [**] Iteration Count : " + i);
             //orgId = _corporateList.get(faker.number().numberBetween(0, corporateList.size())).getOrgId();
             orgId = _corporateList.get(i).getOrgId();
 
-            System.out.println(" [-->] Random Org Id :: " +orgId);
+            logger.info(" [-->] Random Org Id :: " +orgId);
 
             while(orgIdSet.contains(orgId)) {
                 orgId = _corporateList.get(faker.number().numberBetween(0, corporateList.size())).getOrgId();
-                System.out.println(" [-->] ...... #ReAttempt ...... Random Org Id :: " +orgId);
+                logger.info(" [-->] ...... #ReAttempt ...... Random Org Id :: " +orgId);
             }
             if(type.equals("PGAdmin")) {
                 preparePGAdmins(orgId);
@@ -448,7 +453,7 @@ public class CorpPGAdminUtil {
     }
 
     public static void addCardHolder(CardHolder cardHolder) {
-        System.out.println("[*] addCustomer invoked...");
+        logger.info("[*] addCustomer invoked...");
         CorpPGAdminUtil.cardHolderList.add(cardHolder);
         List<CardHolder> cardHolderList = CorpPGAdminUtil.cardHolderListMap.get(cardHolder.getOrgId());
 
@@ -457,9 +462,9 @@ public class CorpPGAdminUtil {
         }
 
         cardHolderList.add(cardHolder);
-        System.out.println(" ...... cardHolderList updated");
+        logger.info(" ...... cardHolderList updated");
         CorpPGAdminUtil.cardHolderListMap.put(cardHolder.getOrgId(), cardHolderList);
-        System.out.println(" ...... cardHolderMap updated");
+        logger.info(" ...... cardHolderMap updated");
     }
 
     public static Corporate getCorporateByOrgId(String orgId)  {
@@ -483,7 +488,7 @@ public class CorpPGAdminUtil {
     }
 
     public static void updateCorporate(String orgId, String userName, Corporate corporateParam) {
-        System.out.println(" ..... updateCorporate.....");
+        logger.info(" ..... updateCorporate.....");
         if(null!=userName && userName.trim().length()>0) {
             corporateParam.setModifiedBy(userName);
         }
@@ -500,9 +505,9 @@ public class CorpPGAdminUtil {
                 corporate.update();
                 CorpPGAdminUtil.corporateList.remove(i);
                 CorpPGAdminUtil.corporateList.add(corporate);
-                System.out.println(THIS_METHOD_NAME + "CorpPGAdminUtil - corporateList updated");
+                logger.info(THIS_METHOD_NAME + "CorpPGAdminUtil - corporateList updated");
                 CorpPGAdminUtil.corporateMap.put(corporate.getOrgId(), corporate);
-                System.out.println(THIS_METHOD_NAME + "CorpPGAdminUtil - corporateMap updated");
+                logger.info(THIS_METHOD_NAME + "CorpPGAdminUtil - corporateMap updated");
                 break;
             }
         }
@@ -521,7 +526,7 @@ public class CorpPGAdminUtil {
     }
 
     public static void updateCardHolder(String Id, String userName, CardHolder cardHolderParam) {
-        System.out.println(" ..... updateCardHolder.....");
+        logger.info(" ..... updateCardHolder.....");
         if(null!=userName && userName.trim().length()>0) {
             cardHolderParam.setModifiedBy(userName);
         }
@@ -534,26 +539,26 @@ public class CorpPGAdminUtil {
 
         List<CardHolder> cardHolderList = CorpPGAdminUtil.cardHolderList;
         int index = getMatchingIndexOfAListElement(cardHolderList, cardHolder);
-        System.out.println(THIS_METHOD_NAME + "Index of the CardHolderList :: " + index);
+        logger.info(THIS_METHOD_NAME + "Index of the CardHolderList :: " + index);
         if(index>=0) {
             cardHolder.update();
             CorpPGAdminUtil.cardHolderList.remove(index);
             CorpPGAdminUtil.cardHolderList.add(cardHolder);
-            System.out.println(THIS_METHOD_NAME + "CorpPGAdminUtil - cardHolderList updated");
+            logger.info(THIS_METHOD_NAME + "CorpPGAdminUtil - cardHolderList updated");
         }
         List<CardHolder> cardHoldersListForMap = CorpPGAdminUtil.cardHolderListMap.get(cardHolder.getOrgId());
         index = getMatchingIndexOfAListElement(cardHoldersListForMap, cardHolder);
-        System.out.println(THIS_METHOD_NAME + "Index of the cardHoldersListForMap :: " + index);
+        logger.info(THIS_METHOD_NAME + "Index of the cardHoldersListForMap :: " + index);
         if(index>=0) {
             cardHoldersListForMap.remove(index);
             cardHoldersListForMap.add(cardHolder);
 
             CorpPGAdminUtil.cardHolderListMap.put(cardHolder.getOrgId(), cardHoldersListForMap);
-            System.out.println(THIS_METHOD_NAME + "CorpPGAdminUtil - cardHolderMap updated for the orgId :: "+cardHolder.getOrgId());
+            logger.info(THIS_METHOD_NAME + "CorpPGAdminUtil - cardHolderMap updated for the orgId :: "+cardHolder.getOrgId());
         }
 
         CorpPGAdminUtil.cardHolderMap.put(cardHolder.getId(), cardHolder);
-        System.out.println(THIS_METHOD_NAME + "CorpPGAdminUtil - cardHolderMap updated");
+        logger.info(THIS_METHOD_NAME + "CorpPGAdminUtil - cardHolderMap updated");
     }
 
     //TODO: Make an Inheritance to avoid this rework (BaseBO)
@@ -570,7 +575,7 @@ public class CorpPGAdminUtil {
     }
 
     public static void updatePGAdmin(String Id, String userName, ProgramAdmin programAdminParam) {
-        System.out.println(" ..... updatePGAdmin.....");
+        logger.info(" ..... updatePGAdmin.....");
         if(null!=userName && userName.trim().length()>0) {
             programAdminParam.setModifiedBy(userName);
         }
@@ -583,25 +588,25 @@ public class CorpPGAdminUtil {
 
         List<ProgramAdmin> pgAdminList = CorpPGAdminUtil.pgAdminList;
         int index = getMatchingIndexOfAListElement(pgAdminList, programAdmin);
-        System.out.println(THIS_METHOD_NAME + "Index of the pgAdminList :: " + index);
+        logger.info(THIS_METHOD_NAME + "Index of the pgAdminList :: " + index);
         if(index>=0) {
             programAdmin.update();
             CorpPGAdminUtil.pgAdminList.remove(index);
             CorpPGAdminUtil.pgAdminList.add(programAdmin);
-            System.out.println(THIS_METHOD_NAME + "CorpPGAdminUtil - pgAdminList updated");
+            logger.info(THIS_METHOD_NAME + "CorpPGAdminUtil - pgAdminList updated");
         }
         List<ProgramAdmin> pgAdminListForMap = CorpPGAdminUtil.pgAdminListMap.get(programAdmin.getOrgId());
         index = getMatchingIndexOfAListElement(pgAdminListForMap, programAdmin);
-        System.out.println(THIS_METHOD_NAME + "Index of the pgAdminListForMap :: " + index);
+        logger.info(THIS_METHOD_NAME + "Index of the pgAdminListForMap :: " + index);
         if(index>=0) {
             pgAdminListForMap.remove(index);
             pgAdminListForMap.add(programAdmin);
 
             CorpPGAdminUtil.pgAdminListMap.put(programAdmin.getOrgId(), pgAdminListForMap);
-            System.out.println(THIS_METHOD_NAME + "CorpPGAdminUtil - pgAdminListMap updated for the orgId :: "+programAdmin.getOrgId());
+            logger.info(THIS_METHOD_NAME + "CorpPGAdminUtil - pgAdminListMap updated for the orgId :: "+programAdmin.getOrgId());
         }
 
         CorpPGAdminUtil.pgAdminMap.put(programAdmin.getId(), programAdmin);
-        System.out.println(THIS_METHOD_NAME + "CorpPGAdminUtil - pgAdminMap updated");
+        logger.info(THIS_METHOD_NAME + "CorpPGAdminUtil - pgAdminMap updated");
     }
 }
